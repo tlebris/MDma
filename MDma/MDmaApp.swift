@@ -1,17 +1,15 @@
-//
-//  MDmaApp.swift
-//  MDma
-//
-//  Created by Thierry on 24/04/2026.
-//
-
 import SwiftUI
 
 @main
 struct MDmaApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        DocumentGroup(newDocument: MarkdownDocument()) { file in
+            ContentView(document: file.$document)
+        }
+        .defaultSize(width: 860, height: 640)
+        .windowToolbarStyle(.unified(showsTitle: true))
+        .commands {
+            CommandGroup(replacing: .help) {}
         }
     }
 }
